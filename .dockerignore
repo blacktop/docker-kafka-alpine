@@ -2,7 +2,7 @@
 .git*
 .gitignore
 
-es-logo.png
+kafka-logo.png
 LICENSE
 README.md
 docker-compose.yml
