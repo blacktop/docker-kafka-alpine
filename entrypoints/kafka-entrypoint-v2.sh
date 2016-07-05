@@ -16,7 +16,7 @@ if [[ "$1" == *kafka* || "$1" == *zookeeper* ]]; then
 		mkdir -p /tmp/kafka-logs
 		chown -R kafka:kafka /tmp/kafka-logs
 		if [ "$KAFKA_ADVERTISED_HOST_NAME" ];then
-			sed -ri "/#advertised.host.name=*/a\advertised.host.name=$KAFKA_ADVERTISED_HOST_NAME" $2
+			sed -ri "/advertised.listeners=PLAINTEXT://*/a\advertised.listeners=PLAINTEXT://$KAFKA_ADVERTISED_HOST_NAME" $2
 		else
 			echo >&2 'warning:missing KAFKA_ADVERTISED_HOST_NAME'
 			echo >&2 'Did you forget -e KAFKA_ADVERTISED_HOST_NAME=some-hostname?'
