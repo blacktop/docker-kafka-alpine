@@ -34,12 +34,6 @@ docker run -d -p 9092:9092 blacktop/kafka
 $ docker run -d -p 2181:2181 blacktop/kafka zookeeper-server-start.sh config/zookeeper.properties
 ```
 
-##### To start zookeeper
-
-```bash
-$ docker run -d -p 2181:2181 blacktop/kafka zookeeper-server-start.sh config/zookeeper.properties
-```
-
 ##### To start kafka 3 node cluster
 
 ```bash
