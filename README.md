@@ -11,6 +11,15 @@ Alpine Linux based Kafka Docker Image
 
 -	[gliderlabs/alpine](https://index.docker.io/_/gliderlabs/alpine/)
 
+### Image Tags
+
+```bash
+$ docker images
+
+REPOSITORY                    TAG                 VIRTUAL SIZE
+blacktop/elasticsearch        latest              141   MB
+```
+
 ### Usage
 
 ```
@@ -18,6 +27,12 @@ docker run -d -p 9092:9092 blacktop/kafka
 ```
 
 ### Documentation
+
+##### To start zookeeper
+
+```bash
+$ docker run -d -p 2181:2181 blacktop/kafka zookeeper-server-start.sh config/zookeeper.properties
+```
 
 ### Issues
 

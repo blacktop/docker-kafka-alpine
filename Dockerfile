@@ -2,10 +2,9 @@ FROM gliderlabs/alpine
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KAFKA 0.10.0.0
-ENV SCALA 2.11
+RUN apk-install openjdk8-jre tini
 
-# Grab gosu for easy step-down from root
+# Grab *gosu* for easy step-down from root
 ENV GOSU_VERSION 1.7
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
 RUN apk-install -t build-deps wget ca-certificates gpgme \
@@ -19,7 +18,10 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
 	&& gosu nobody true \
   && apk del --purge build-deps
 
-RUN apk-install openjdk8-jre bash
+ENV KAFKA 0.10.0.0
+ENV SCALA 2.11
+
+RUN apk-install bash
 RUN apk-install -t build-deps curl ca-certificates \
   && mkdir -p /opt \
 	&& curl -sSL http://apache.mirrors.ionfish.org/kafka/${KAFKA}/kafka_${SCALA}-${KAFKA}.tgz \
@@ -27,16 +29,18 @@ RUN apk-install -t build-deps curl ca-certificates \
 	&& mv /opt/kafka_${SCALA}-${KAFKA} /opt/kafka \
   && apk del --purge build-deps
 
+ENV PATH $PATH:/opt/kafka/bin/
+
 WORKDIR /opt/kafka
 
 VOLUME ["/tmp/kafka-logs"]
 
-EXPOSE 9092
+EXPOSE 9092 2181
 
 COPY config /opt/kafka/config
-COPY entrypoints/kafka-entrypoint.sh /
+COPY entrypoints/kafka-entrypoint-v2.sh /kafka-entrypoint.sh
 RUN chmod +x /kafka-entrypoint.sh
 
 ENTRYPOINT ["/kafka-entrypoint.sh"]
 
-CMD ["bin/kafka-server-start.sh", "config/server.properties"]
+CMD ["kafka-server-start.sh", "config/server.properties"]
