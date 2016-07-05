@@ -1,0 +1,25 @@
+version: "2"
+
+services:
+  zookeeper:
+    image: blacktop/kafka
+    command: zookeeper-server-start.sh config/zookeeper.properties
+    ports:
+      - 2181:2181
+    networks:
+      - kafka
+  kafka:
+    image: blacktop/kafka
+    ports:
+      - 9092:9092
+    links:
+     - zookeeper
+    networks:
+      - kafka
+
+# volumes:
+#   es-data:
+
+networks:
+  kafka:
+    driver: bridge
