@@ -17,7 +17,7 @@ Alpine Linux based Kafka Docker Image
 $ docker images
 
 REPOSITORY                    TAG                 VIRTUAL SIZE
-blacktop/elasticsearch        latest              141   MB
+blacktop/kafka                latest              149   MB
 ```
 
 ### Usage
