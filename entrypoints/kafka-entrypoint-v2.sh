@@ -37,7 +37,7 @@ if [[ "$1" == *kafka* || "$1" == *zookeeper* ]]; then
 			sed -ri "s!^(broker.id=).*!\1 $KAFKA_BROKER_ID!" $2
 		fi
 	fi
-	set -- gosu kafka "$@"
+	set -- gosu kafka tini -- "$@"
 fi
 
 exec "$@"
