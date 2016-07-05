@@ -12,7 +12,7 @@ if [ "$1" = "" ];then
 fi
 
 if [[ "$1" == *kafka* || "$1" == *zookeeper* ]]; then
-	if [[ "$1" == *kafka-server-start.sh && "$2" == "/usr/local/kafka/config/server.properties" ]];then
+	if [[ "$1" == *kafka-server-start.sh && "$2" == *server.properties ]];then
 		mkdir -p /tmp/kafka-logs
 		chown -R kafka:kafka /tmp/kafka-logs
 		if [ "$KAFKA_ADVERTISED_HOST_NAME" ];then
