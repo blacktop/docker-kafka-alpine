@@ -27,6 +27,9 @@ RUN apk-install -t build-deps curl ca-certificates \
 	&& curl -sSL http://apache.mirrors.ionfish.org/kafka/${KAFKA}/kafka_${SCALA}-${KAFKA}.tgz \
 		| tar -xzf - -C /opt \
 	&& mv /opt/kafka_${SCALA}-${KAFKA} /opt/kafka \
+  && adduser -DH -s /sbin/nologin kafka \
+  && chown -R kafka:kafka /opt/kafka \
+  && rm -rf /tmp/* \
   && apk del --purge build-deps
 
 ENV PATH $PATH:/opt/kafka/bin/
