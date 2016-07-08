@@ -14,8 +14,6 @@ services:
       - 9092:9092
     links:
      - zookeeper
-    environment:
-        KAFKA_ADVERTISED_HOST_NAME: localhost
     networks:
       - kafka
 

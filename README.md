@@ -46,8 +46,7 @@ $ docker run -d --name kafka-3 -p 9094:9092 -e KAFKA_BROKER_ID=2 --link zookeepe
 Or you can use [docker-compose](https://docs.docker.com/compose/) to make a single node cluster:
 
 ```bash
-$ curl -o ./docker-compose.yml https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master/docker-compose.yml
-$ docker-compose up -d
+$ curl -sSL https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master/docker-compose.yml > docker-compose.yml && docker-compose up -d
 ```
 
 ### Issues
