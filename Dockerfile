@@ -18,15 +18,16 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
 	&& gosu nobody true \
   && apk del --purge build-deps
 
-ENV KAFKA 0.10.0.0
-ENV SCALA 2.11
+ENV KAFKA_VERSION 0.10.0.0
+ENV SCALA_VERSION 2.11
 
-RUN apk-install bash
-RUN apk-install -t build-deps curl ca-certificates \
+RUN apk-install bash docker
+RUN apk-install -t build-deps curl ca-certificates jq \
   && mkdir -p /opt \
-	&& curl -sSL http://apache.mirrors.ionfish.org/kafka/${KAFKA}/kafka_${SCALA}-${KAFKA}.tgz \
+	&& mirror=$(curl --stderr /dev/null https://www.apache.org/dyn/closer.cgi\?as_json\=1 | jq -r '.preferred') \
+	&& curl -sSL "${mirror}kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" \
 		| tar -xzf - -C /opt \
-	&& mv /opt/kafka_${SCALA}-${KAFKA} /opt/kafka \
+	&& mv /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka \
   && adduser -DH -s /sbin/nologin kafka \
   && chown -R kafka:kafka /opt/kafka \
   && rm -rf /tmp/* \
@@ -41,8 +42,9 @@ VOLUME ["/tmp/kafka-logs"]
 EXPOSE 9092 2181
 
 COPY config /opt/kafka/config
-COPY entrypoints/kafka-entrypoint-v2.sh /kafka-entrypoint.sh
-RUN chmod +x /kafka-entrypoint.sh
+COPY entrypoints/kafka-entrypoint-v3.sh /kafka-entrypoint.sh
+COPY create-topics.sh /create-topics.sh
+RUN chmod +x /kafka-entrypoint.sh /create-topics.sh
 
 ENTRYPOINT ["/kafka-entrypoint.sh"]
 

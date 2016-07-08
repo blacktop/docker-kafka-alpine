@@ -55,6 +55,8 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 
 ### Credits
 
+Heavily (if not entirely) influenced by https://github.com/wurstmeister/kafka-docker
+
 ### License
 
 MIT Copyright (c) 2016 **blacktop**

@@ -10,15 +10,20 @@ services:
       - kafka
   kafka:
     image: blacktop/kafka
+    environment:
+      - KAFKA_HEAP_OPTS=-Xmx2G -Xms2G
     ports:
       - 9092:9092
     links:
      - zookeeper
+    volumes:
+      - kafka-logs:/tmp/kafka-logs
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - kafka
 
-# volumes:
-#   es-data:
+volumes:
+  kafka-logs:
 
 networks:
   kafka:
