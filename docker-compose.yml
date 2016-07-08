@@ -11,13 +11,11 @@ services:
   kafka:
     image: blacktop/kafka
     ports:
-      - 9092:9092
+      - 9092
     links:
      - zookeeper
     environment:
         KAFKA_ADVERTISED_HOST_NAME: localhost
-        KAFKA_ADVERTISED_PORT: 9092
-        KAFKA_BROKER_ID: 0
     networks:
       - kafka
 
