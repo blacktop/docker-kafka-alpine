@@ -18,6 +18,7 @@ $ docker images
 
 REPOSITORY                    TAG                 VIRTUAL SIZE
 blacktop/kafka                latest              149   MB
+blacktop/kafka:w_docker       latest              247   MB
 ```
 
 ### Usage

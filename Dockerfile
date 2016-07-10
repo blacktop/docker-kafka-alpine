@@ -21,7 +21,7 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
 ENV KAFKA_VERSION 0.10.0.0
 ENV SCALA_VERSION 2.11
 
-RUN apk-install bash docker
+RUN apk-install bash docker coreutils
 RUN apk-install -t build-deps curl ca-certificates jq \
   && mkdir -p /opt \
 	&& mirror=$(curl --stderr /dev/null https://www.apache.org/dyn/closer.cgi\?as_json\=1 | jq -r '.preferred') \
@@ -42,9 +42,11 @@ VOLUME ["/tmp/kafka-logs"]
 EXPOSE 9092 2181
 
 COPY config /opt/kafka/config
-COPY entrypoints/kafka-entrypoint-v3.sh /kafka-entrypoint.sh
+COPY entrypoints/kafka-entrypoint-v4.sh /kafka-entrypoint.sh
 COPY create-topics.sh /create-topics.sh
-RUN chmod +x /kafka-entrypoint.sh /create-topics.sh
+COPY start-kafka.sh /start-kafka.sh
+COPY start-zookeeper.sh /start-zookeeper.sh
+RUN chmod +x /*.sh
 
 ENTRYPOINT ["/kafka-entrypoint.sh"]
 
