@@ -44,8 +44,8 @@ EXPOSE 9092 2181
 COPY config /opt/kafka/config
 COPY entrypoints/kafka-entrypoint-v4.sh /kafka-entrypoint.sh
 COPY create-topics.sh /create-topics.sh
-COPY start-kafka.sh /start-kafka.sh
-COPY start-zookeeper.sh /start-zookeeper.sh
+COPY configure-kafka.sh /configure-kafka.sh
+COPY configure-zookeeper.sh /configure-zookeeper.sh
 RUN chmod +x /*.sh
 
 ENTRYPOINT ["/kafka-entrypoint.sh"]
