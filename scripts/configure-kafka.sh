@@ -2,11 +2,13 @@
 
 if [[ -z "$KAFKA_PORT" ]]; then
     export KAFKA_PORT=9092
+    echo "Setting KAFKA_PORT to $KAFKA_PORT"
 fi
 if [[ -z "$KAFKA_ADVERTISED_PORT" ]]; then
     advertised_port=$(docker port `hostname` $KAFKA_PORT | sed -r "s/.*:(.*)/\1/g")
-    if [[ -z advertised_port ]]; then
+    if [[ -n "$advertised_port" ]]; then
         export KAFKA_ADVERTISED_PORT=$(docker port `hostname` $KAFKA_PORT | sed -r "s/.*:(.*)/\1/g")
+        echo "Setting KAFKA_ADVERTISED_PORT to $KAFKA_ADVERTISED_PORT"
     fi
 fi
 if [[ -z "$KAFKA_BROKER_ID" ]]; then
@@ -15,19 +17,22 @@ if [[ -z "$KAFKA_BROKER_ID" ]]; then
 fi
 if [[ -z "$KAFKA_LOG_DIRS" ]]; then
     export KAFKA_LOG_DIRS="/kafka/kafka-logs/$HOSTNAME"
+    echo "Setting KAFKA_LOG_DIRS to $KAFKA_LOG_DIRS"
 fi
 if [[ -z "$KAFKA_ZOOKEEPER_CONNECT" ]]; then
     export KAFKA_ZOOKEEPER_CONNECT=$(env | grep ZOOKEEPER_PORT_2181_TCP= | sed -e 's|.*tcp://||' | paste -sd ,)
+    echo "Setting KAFKA_ZOOKEEPER_CONNECT to $KAFKA_ZOOKEEPER_CONNECT"
 fi
 
 if [[ -n "$KAFKA_HEAP_OPTS" ]]; then
     sed -r -i "s/(export KAFKA_HEAP_OPTS)=\"(.*)\"/\1=\"$KAFKA_HEAP_OPTS\"/g"
-    bin/kafka-server-start.sh
+    bin/kafka-server-start.sh > /dev/null 2>&1
     unset KAFKA_HEAP_OPTS
 fi
 
 if [[ -z "$KAFKA_ADVERTISED_HOST_NAME" && -n "$HOSTNAME_COMMAND" ]]; then
     export KAFKA_ADVERTISED_HOST_NAME=$(eval $HOSTNAME_COMMAND)
+    echo "Setting KAFKA_ADVERTISED_HOST_NAME to $KAFKA_ADVERTISED_HOST_NAME"
 fi
 
 for VAR in `env`
