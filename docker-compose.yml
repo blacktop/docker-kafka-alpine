@@ -15,21 +15,22 @@ services:
     entrypoint: /wait-for-it.sh zookeeper:2181 -s --timeout=5 -- /kafka-entrypoint.sh
     command: kafka-server-start.sh config/server.properties
     environment:
-      KAFKA_CREATE_TOPICS: "test:1:1"
+      KAFKA_CREATE_TOPICS: "my-topic:1:1"
       KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: localhost
     ports:
       - 9092
     links:
      - zookeeper
     volumes:
-      - kafka-logs:/tmp/kafka-logs
+      # - kafka-logs:/tmp/kafka-logs
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - kafka
 
-volumes:
-  kafka-logs:
+# volumes:
+#   kafka-logs:
 
 networks:
   kafka:

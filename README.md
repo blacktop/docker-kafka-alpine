@@ -48,6 +48,7 @@ Or you can use [docker-compose](https://docs.docker.com/compose/) to make a sing
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master/docker-compose.yml > docker-compose.yml && docker-compose up -d
+$ docker-compose scale kafka=3
 ```
 
 ### Issues
