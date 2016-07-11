@@ -11,7 +11,8 @@ services:
   kafka:
     image: blacktop/kafka
     environment:
-      - KAFKA_HEAP_OPTS=-Xmx2G -Xms2G
+      KAFKA_CREATE_TOPICS: "test:1:1"
+      KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"      
     ports:
       - 9092:9092
     links:

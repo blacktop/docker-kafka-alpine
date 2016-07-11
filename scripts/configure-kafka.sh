@@ -43,6 +43,7 @@ done
 # Make logs dirs
 mkdir -p $KAFKA_LOG_DIRS
 chown -R kafka:kafka $KAFKA_LOG_DIRS
+
 # KAFKA_PID=0
 #
 # # see https://medium.com/@gchudnov/trapping-signals-in-docker-containers-7a57fdda7d86#.bh35ir4u5
