@@ -71,7 +71,6 @@ Vagrant.configure("2") do |config|
     sudo apt-get update -q
     sudo apt-get install -y linux-image-extra-$(uname -r)
     sudo apt-get install -y docker-engine
-    sudo groupadd docker
     sudo usermod -aG docker vagrant
     curl -sL https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose

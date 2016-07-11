@@ -12,7 +12,7 @@ services:
     image: blacktop/kafka
     environment:
       KAFKA_CREATE_TOPICS: "test:1:1"
-      KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"      
+      KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"
     ports:
       - 9092:9092
     links:
@@ -20,6 +20,7 @@ services:
     volumes:
       - kafka-logs:/tmp/kafka-logs
       - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint: /wait-for-it.sh zookeeper:2181 -s --timeout=5 -- /kafka-entrypoint.sh
     networks:
       - kafka
 
