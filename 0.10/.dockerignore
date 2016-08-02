@@ -5,6 +5,12 @@
 kafka-logo.png
 LICENSE
 README.md
+README.md.bu
+.vagrant
+Vagrantfile
 docker-compose.yml
 .DS_Store
-Vagrantfile
+build
+release
+Makefile
+VERSION

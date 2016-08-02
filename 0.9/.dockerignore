@@ -1,0 +1,16 @@
+# Ignore .git folder
+.git*
+.gitignore
+
+kafka-logo.png
+LICENSE
+README.md
+README.md.bu
+.vagrant
+Vagrantfile
+docker-compose.yml
+.DS_Store
+build
+release
+Makefile
+VERSION

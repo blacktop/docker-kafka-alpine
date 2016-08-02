@@ -13,11 +13,15 @@ fi
 
 if [[ "$1" == *kafka* || "$1" == *zookeeper* ]]; then
 	if [[ "$1" == *kafka-server-start.sh && "$2" == *server.properties ]];then
+		chown -R kafka:kafka /opt/kafka
+
 		echo "Configuring Kafka..."
 		/configure-kafka.sh
 	fi
 	if [[ "$1" == *zookeeper-server-start.sh && "$2" == *zookeeper.properties ]];then
-		echo "Configuring Zookeeper..."		
+		chown -R kafka:kafka /opt/kafka
+		
+		echo "Configuring Zookeeper..."
 		/configure-zookeeper.sh
 	fi
 	set -- gosu kafka tini -- "$@"

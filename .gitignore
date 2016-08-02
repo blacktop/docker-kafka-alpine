@@ -1,1 +1,4 @@
 .vagrant/
+build
+*.tgz
+*.bu

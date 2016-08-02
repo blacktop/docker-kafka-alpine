@@ -20,7 +20,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_HOST_NAME: localhost
     ports:
-      - 9092
+      - 9092:9092
     links:
      - zookeeper
     volumes:

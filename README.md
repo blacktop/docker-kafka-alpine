@@ -3,25 +3,25 @@
 docker-kafka-alpine
 ===================
 
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/)
+[![Docker Image](https://img.shields.io/badge/docker image-141.7 MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
 
-Alpine Linux based Kafka Docker Image
+Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
 ### Dependencies
 
--	[gliderlabs/alpine](https://index.docker.io/_/gliderlabs/alpine/)
+-	[gliderlabs/alpine:3.4](https://index.docker.io/_/gliderlabs/alpine/)
 
 ### Image Tags
 
 ```bash
-$ docker images
-
 REPOSITORY                    TAG                 VIRTUAL SIZE
 blacktop/kafka                latest              149   MB
 blacktop/kafka:w_docker       latest              247   MB
 ```
 
-### Usage
+### Getting Started
 
 ```
 docker run -d -p 9092:9092 blacktop/kafka
@@ -47,9 +47,13 @@ $ docker run -d --name kafka-3 -p 9094:9092 --link zookeeper blacktop/kafka
 Or you can use [docker-compose](https://docs.docker.com/compose/) to make a single node cluster:
 
 ```bash
-$ curl -sSL https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master/docker-compose.yml > docker-compose.yml && docker-compose up -d
+$ curl -sL https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master/docker-compose.yml > docker-compose.yml && docker-compose up -d
 $ docker-compose scale kafka=3
 ```
+
+### Known Issues
+
+#### test
 
 ### Issues
 
@@ -58,6 +62,16 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 ### Credits
 
 Heavily (if not entirely) influenced by https://github.com/wurstmeister/kafka-docker
+
+### CHANGELOG
+
+See [`CHANGELOG.md`](https://github.com/blacktop/docker-kafka-alpine/blob/master/CHANGELOG.md)
+
+### Contributing
+
+[See all contributors on GitHub](https://github.com/blacktop/docker-kafka-alpine/graphs/contributors).
+
+Please update the [CHANGELOG.md](https://github.com/blacktop/docker-kafka-alpine/blob/master/CHANGELOG.md) and submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).
 
 ### License
 
