@@ -7,7 +7,7 @@ dev:
 	docker run --rm $(NAME):dev $(DEV_RUN_OPTS)
 
 tags:
-	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" blacktop/$(NAME)
+	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" blacktop/$(NAME) | sort -k1,1 -k2r
 
 build:
 	rm -rf build && mkdir build
