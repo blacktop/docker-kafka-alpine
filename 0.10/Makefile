@@ -1,4 +1,4 @@
-NAME=elasticsearch
+NAME=kafka
 VERSION=$(shell cat VERSION)
 DEV_RUN_OPTS ?= -h
 
