@@ -2,3 +2,8 @@
 build
 *.tgz
 *.bu
+node_modules
+
+*.js
+
+*.json
