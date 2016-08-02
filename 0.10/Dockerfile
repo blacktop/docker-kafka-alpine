@@ -43,7 +43,8 @@ VOLUME ["/tmp/kafka-logs"]
 
 EXPOSE 9092 2181
 
-COPY config /opt/kafka/config
+COPY config/server.properties /opt/kafka/config
+COPY config/zookeeper.properties /opt/kafka/config
 COPY entrypoints/kafka-entrypoint-v4.sh /kafka-entrypoint.sh
 COPY scripts /
 
