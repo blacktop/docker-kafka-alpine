@@ -68,10 +68,6 @@ $ curl -sL https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master
 $ docker-compose scale kafka=3
 ```
 
-### Known Issues
-
-#### test
-
 ### Issues
 
 Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-kafka-alpine/issues/new)
