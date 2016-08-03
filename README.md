@@ -51,7 +51,7 @@ $ docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
                 -e KAFKA_ADVERTISED_HOST_NAME=localhost \
                 --link zookeeper \
                 -p 9093:9092 \
-                --name kafka-3 \
+                --name kafka-2 \
                 blacktop/kafka
 $ docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
                 -e KAFKA_ADVERTISED_HOST_NAME=localhost \
