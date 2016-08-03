@@ -41,23 +41,23 @@ $ docker run -d -p 2181:2181 blacktop/kafka zookeeper-server-start.sh config/zoo
 
 ```bash
 $ docker run -d --name zookeeper -p 2181:2181 blacktop/kafka zookeeper-server-start.sh config/zookeeper.properties
-$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock
-                -e KAFKA_ADVERTISED_HOST_NAME=localhost
-                --link zookeeper
-                -p 9092:9092
-                --name kafka-1
+$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
+                -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+                --link zookeeper \
+                -p 9092:9092 \
+                --name kafka-1 \
                 blacktop/kafka
-$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock
-                -e KAFKA_ADVERTISED_HOST_NAME=localhost
-                --link zookeeper
-                -p 9093:9092
-                --name kafka-3
+$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
+                -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+                --link zookeeper \
+                -p 9093:9092 \
+                --name kafka-3 \
                 blacktop/kafka
-$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock
-                -e KAFKA_ADVERTISED_HOST_NAME=localhost
-                --link zookeeper
-                -p 9094:9092
-                --name kafka-3
+$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
+                -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+                --link zookeeper \
+                -p 9094:9092 \
+                --name kafka-3 \
                 blacktop/kafka                
 ```
 
