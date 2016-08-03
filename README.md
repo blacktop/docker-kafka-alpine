@@ -31,6 +31,8 @@ docker run -d -p 9092:9092 blacktop/kafka
 
 ### Documentation
 
+> NOTE: I am assuming use of Docker for Mac with these examples. (`KAFKA_ADVERTISED_HOST_NAME=localhost`)
+
 ##### To start zookeeper
 
 ```bash
