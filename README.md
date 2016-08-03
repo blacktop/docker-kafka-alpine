@@ -76,6 +76,10 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 
 Heavily (if not entirely) influenced by https://github.com/wurstmeister/kafka-docker
 
+### Todo
+
+-	[ ] Add ability to run a single node kafka broker when you don't supply a zookeeper link.
+
 ### CHANGELOG
 
 See [`CHANGELOG.md`](https://github.com/blacktop/docker-kafka-alpine/blob/master/CHANGELOG.md)
