@@ -4,53 +4,66 @@ Change Log
 All notable changes to this project will be documented in this file.
 
 [0.10] - 2016-08-01
-------------------
+-------------------
 
 ### Fixed
 
+-	KAFKA_ZOOKEEPER_CONNECT in configure-kafka.sh
+
 ### Added
 
-- official configs for reference
+-	KAFKA_LISTENERS, KAFKA_ADVERTISED_LISTENERS env config flags
+-	official configs for reference
 -	krallin/tini
 -	tianon/gosu
+-	golang kafka test client
 
 ### Removed
 
 ### Changed
 
-- updated docker-compose in Vagrantfile
-- changed tini to /sbin/tini
+-	docker-compose to spin up 3 nodes by default
+-	updated docker-compose in Vagrantfile
+-	changed tini to /sbin/tini
 
 [0.9] - 2016-08-01
 ------------------
 
 ### Fixed
 
+-	KAFKA_ZOOKEEPER_CONNECT in configure-kafka.sh
+
 ### Added
 
-- official configs for reference
+-	KAFKA_LISTENERS, KAFKA_ADVERTISED_LISTENERS env config flags
+-	official configs for reference
 -	krallin/tini
 -	tianon/gosu
+-	golang kafka test client
 
-### Removed
+	### Removed
 
 ### Changed
 
-- changed tini to /sbin/tini
+-	changed tini to /sbin/tini
 
 [0.8] - 2016-08-01
 ------------------
 
 ### Fixed
 
+-	KAFKA_ZOOKEEPER_CONNECT in configure-kafka.sh
+
 ### Added
 
-- official configs for reference
+-	KAFKA_LISTENERS, KAFKA_ADVERTISED_LISTENERS env config flags
+-	official configs for reference
 -	krallin/tini
 -	tianon/gosu
+-	golang kafka test client
 
 ### Removed
 
 ### Changed
 
-- changed tini to /sbin/tini
+-	changed tini to /sbin/tini

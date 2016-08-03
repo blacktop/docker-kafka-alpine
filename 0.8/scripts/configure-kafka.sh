@@ -28,7 +28,7 @@ if [[ -n "$KAFKA_ADVERTISED_LISTENERS" ]]; then
 fi
 
 if [[ -z "$KAFKA_ZOOKEEPER_CONNECT" ]]; then
-    export KAFKA_ZOOKEEPER_CONNECT=$(env | grep ZK.*PORT_2181_TCP= | sed -e 's|.*tcp://||' | paste -sd ,)
+    export KAFKA_ZOOKEEPER_CONNECT=$(env | grep ZOOKEEPER.*PORT_2181_TCP= | sed -e 's|.*tcp://||' | paste -sd ,)
 fi
 
 # Set run env options
