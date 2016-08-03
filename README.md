@@ -41,9 +41,24 @@ $ docker run -d -p 2181:2181 blacktop/kafka zookeeper-server-start.sh config/zoo
 
 ```bash
 $ docker run -d --name zookeeper -p 2181:2181 blacktop/kafka zookeeper-server-start.sh config/zookeeper.properties
-$ docker run -d --name kafka-1 -p 9092:9092 --link zookeeper blacktop/kafka
-$ docker run -d --name kafka-2 -p 9093:9092 --link zookeeper blacktop/kafka
-$ docker run -d --name kafka-3 -p 9094:9092 --link zookeeper blacktop/kafka
+$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock
+                -e KAFKA_ADVERTISED_HOST_NAME=localhost
+                --link zookeeper
+                -p 9092:9092
+                --name kafka-1
+                blacktop/kafka
+$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock
+                -e KAFKA_ADVERTISED_HOST_NAME=localhost
+                --link zookeeper
+                -p 9093:9092
+                --name kafka-3
+                blacktop/kafka
+$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock
+                -e KAFKA_ADVERTISED_HOST_NAME=localhost
+                --link zookeeper
+                -p 9094:9092
+                --name kafka-3
+                blacktop/kafka                
 ```
 
 Or you can use [docker-compose](https://docs.docker.com/compose/) to make a single node cluster:
