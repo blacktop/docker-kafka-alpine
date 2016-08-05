@@ -16,7 +16,7 @@ dependencies:
 
 test:
   override:
-    - docker run -d --name zookeeper -p 9092:9092 -p 2181:2181 -e KAFKA_ADVERTISED_HOST_NAME=localhost blacktop_kafka
+    - docker run -d --name zookeeper -p 9092:9092 -e KAFKA_ADVERTISED_HOST_NAME=localhost blacktop_kafka
     - docker run --link zookeeper blacktop_kafka kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partition 1 --topic test-topic
 
 deployment:
