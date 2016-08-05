@@ -117,6 +117,14 @@ $ docker run --rm \
              blacktop/kafka kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 3 --partition 1 --topic test-topic  
 ```
 
+#### Tips and Tricks
+
+Get Host IP on Linux
+
+```bash
+$ ifconfig docker0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'
+```
+
 ### Known Issues
 
 For some reason I can't get the docker-compose example to work with Docker for Mac. It does, however, work great with docker-machine on OSX.
