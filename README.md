@@ -25,17 +25,17 @@ blacktop/kafka      0.8                 230.1 MB
 
 ### Getting Started
 
-> **NOTE:** I am assuming use of Docker for Mac with these examples. (`KAFKA_ADVERTISED_HOST_NAME=localhost`)
+> **NOTE:** I am assuming use of docker-machine with these examples. (`KAFKA_ADVERTISED_HOST_NAME=192.168.99.100`)
 
 ```
 docker run -d \
            -p 9092:9092 \
            -p 2181:2181 \
-           -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+           -e KAFKA_ADVERTISED_HOST_NAME=192.168.99.100 \
            -e KAFKA_CREATE_TOPICS="test-topic:1:1" \
            blacktop/kafka:0.10
 ```
-This will create a single-node kafka broker (*listening on localhost:9092*), a local zookeeper instance and create the topic `test-topic` with 1 `replication-factor` and 1 `partition`.
+This will create a single-node kafka broker (*listening on 192.168.99.100:9092*), a local zookeeper instance and create the topic `test-topic` with 1 `replication-factor` and 1 `partition`.
 
 ### Documentation
 
@@ -56,21 +56,21 @@ $ docker run -d \
 # Start 3 kafka nodes             
 $ docker run -d \
              -v /var/run/docker.sock:/var/run/docker.sock \
-             -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+             -e KAFKA_ADVERTISED_HOST_NAME=192.168.99.100 \
              --link zookeeper \
              -p 9092:9092 \
              --name kafka-1 \
              blacktop/kafka
 $ docker run -d \
              -v /var/run/docker.sock:/var/run/docker.sock \
-             -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+             -e KAFKA_ADVERTISED_HOST_NAME=192.168.99.100 \
              --link zookeeper \
              -p 9093:9092 \
              --name kafka-2 \
              blacktop/kafka
 $ docker run -d \
              -v /var/run/docker.sock:/var/run/docker.sock \
-             -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+             -e KAFKA_ADVERTISED_HOST_NAME=192.168.99.100 \
              --link zookeeper \
              -p 9094:9092 \
              --name kafka-3 \
@@ -89,7 +89,15 @@ $ curl -sL https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master
 # OR supply a HOSTNAME_COMMAND function.
 $ docker-compose up -d
 $ docker-compose scale kafka=3
+# Create test-topic (replicated across kafka nodes)
+$ docker run --rm \
+             --link zookeeper \
+             blacktop/kafka kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 3 --partition 1 --topic test-topic  
 ```
+
+### Known Issues
+
+For some reason I can't get the docker-compose example to work with Docker for Mac.  It does, however, work great with docker-machine on OSX.
 
 ### Issues
 

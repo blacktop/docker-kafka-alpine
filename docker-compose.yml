@@ -2,12 +2,12 @@ version: "2"
 
 services:
   zookeeper:
+    container_name: zookeeper
     image: blacktop/kafka:0.10
     command: zookeeper-server-start.sh config/zookeeper.properties
     ports:
       - 2181:2181
-    # networks:
-    #   - kafka
+    network_mode: bridge
   kafka:
     image: blacktop/kafka:0.10
     depends_on:
@@ -15,7 +15,7 @@ services:
     entrypoint: /wait-for-it.sh zookeeper:2181 -s --timeout=5 -- /kafka-entrypoint.sh
     command: kafka-server-start.sh config/server.properties
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"
     ports:
@@ -25,12 +25,7 @@ services:
     volumes:
       # - kafka-logs:/tmp/kafka-logs
       - /var/run/docker.sock:/var/run/docker.sock
-    # networks:
-    #   - kafka
+    network_mode: bridge
 
 # volumes:
 #   kafka-logs:
-
-# networks:
-#   kafka:
-#     driver: bridge
