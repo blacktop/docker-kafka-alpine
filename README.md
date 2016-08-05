@@ -3,9 +3,7 @@
 docker-kafka-alpine
 ===================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/)
-[![Docker Image](https://img.shields.io/badge/docker image-241.2 MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker image-241.2 MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
 
 Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
@@ -25,7 +23,7 @@ blacktop/kafka      0.8                 230.1 MB
 
 ### Getting Started
 
-> **NOTE:** I am assuming use of docker-machine with these examples. (`KAFKA_ADVERTISED_HOST_NAME=192.168.99.100`)
+> **NOTE:** I am assuming use of docker-machine with these examples. (`KAFKA_ADVERTISED_HOST_NAME=192.168.99.100`\)
 
 ```
 docker run -d \
@@ -35,6 +33,7 @@ docker run -d \
            -e KAFKA_CREATE_TOPICS="test-topic:1:1" \
            blacktop/kafka:0.10
 ```
+
 This will create a single-node kafka broker (*listening on 192.168.99.100:9092*), a local zookeeper instance and create the topic `test-topic` with 1 `replication-factor` and 1 `partition`.
 
 ### Documentation
@@ -97,7 +96,7 @@ $ docker run --rm \
 
 ### Known Issues
 
-For some reason I can't get the docker-compose example to work with Docker for Mac.  It does, however, work great with docker-machine on OSX.
+For some reason I can't get the docker-compose example to work with Docker for Mac. It does, however, work great with docker-machine on OSX.
 
 ### Issues
 

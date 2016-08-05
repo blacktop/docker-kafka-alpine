@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- ability to run a single node kafka broker when you don't supply a zookeeper link
+-	ability to run a single node kafka broker when you don't supply a zookeeper link
 -	KAFKA_LISTENERS, KAFKA_ADVERTISED_LISTENERS env config flags
 -	official configs for reference
 -	krallin/tini
@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+-	README switchin from Docker4Mac back to docker-machine
 -	docker-compose to spin up 3 nodes by default
 -	updated docker-compose in Vagrantfile
 -	changed tini to /sbin/tini
@@ -36,7 +37,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- ability to run a single node kafka broker when you don't supply a zookeeper link
+-	ability to run a single node kafka broker when you don't supply a zookeeper link
 -	KAFKA_LISTENERS, KAFKA_ADVERTISED_LISTENERS env config flags
 -	official configs for reference
 -	krallin/tini
@@ -58,7 +59,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- ability to run a single node kafka broker when you don't supply a zookeeper link
+-	ability to run a single node kafka broker when you don't supply a zookeeper link
 -	KAFKA_LISTENERS, KAFKA_ADVERTISED_LISTENERS env config flags
 -	official configs for reference
 -	krallin/tini
