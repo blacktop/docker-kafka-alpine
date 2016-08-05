@@ -2,20 +2,23 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 
+	"github.com/docker/engine-api/client"
+	"github.com/docker/engine-api/types"
 	"github.com/optiopay/kafka"
 	"github.com/optiopay/kafka/proto"
+	"golang.org/x/net/context"
 )
 
 const (
-	topic     = "my-replicated-topic"
+	topic     = "test-topic"
 	partition = 0
 )
-
-var kafkaAddrs = []string{"localhost:9092", "localhost:9093", "localhost:9094"}
 
 // printConsumed read messages from kafka and print them out
 func printConsumed(broker kafka.Client) {
@@ -61,6 +64,24 @@ func produceStdin(broker kafka.Client) {
 }
 
 func main() {
+	cli, err := client.NewEnvClient()
+
+	options := types.ContainerListOptions{All: true}
+	containers, err := cli.ContainerList(context.Background(), options)
+	if err != nil {
+		log.Fatal(err)
+	}
+	kafkaAddrs := []string{}
+
+	for _, container := range containers {
+		if strings.Contains(container.Names[0], "kafka") {
+			ports := container.Ports
+			kafkaAddrs = append(kafkaAddrs, "192.168.99.100:"+strconv.Itoa(ports[0].PublicPort))
+		}
+	}
+
+	fmt.Println("Kafka Hosts: ", kafkaAddrs)
+
 	// connect to kafka cluster
 	broker, err := kafka.Dial(kafkaAddrs, kafka.NewBrokerConf("go-client"))
 	if err != nil {
