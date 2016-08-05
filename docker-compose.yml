@@ -6,74 +6,31 @@ services:
     command: zookeeper-server-start.sh config/zookeeper.properties
     ports:
       - 2181:2181
-    networks:
-      - kafka
-  kafka-1:
+    # networks:
+    #   - kafka
+  kafka:
     image: blacktop/kafka:0.10
     depends_on:
       - zookeeper
     entrypoint: /wait-for-it.sh zookeeper:2181 -s --timeout=5 -- /kafka-entrypoint.sh
     command: kafka-server-start.sh config/server.properties
     environment:
-      KAFKA_CREATE_TOPICS: "my-topic:3:1"
-      KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"
+      KAFKA_ADVERTISED_HOST_NAME: localhost
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENERS: 'PLAINTEXT://:9092'
-      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://localhost:9092'
+      KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"
     ports:
-      - 9092:9092
+      - 9092
     links:
      - zookeeper
     volumes:
       # - kafka-logs:/tmp/kafka-logs
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - kafka
-  kafka-2:
-    image: blacktop/kafka:0.10
-    depends_on:
-      - zookeeper
-    entrypoint: /wait-for-it.sh zookeeper:2181 -s --timeout=5 -- /kafka-entrypoint.sh
-    command: kafka-server-start.sh config/server.properties
-    environment:
-      KAFKA_CREATE_TOPICS: "my-topic:3:1"
-      KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENERS: PLAINTEXT://:9093
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9093
-    ports:
-      - 9093:9093
-    links:
-     - zookeeper
-    volumes:
-      # - kafka-logs:/tmp/kafka-logs
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - kafka
-  kafka-3:
-    image: blacktop/kafka:0.10
-    depends_on:
-      - zookeeper
-    entrypoint: /wait-for-it.sh zookeeper:2181 -s --timeout=5 -- /kafka-entrypoint.sh
-    command: kafka-server-start.sh config/server.properties
-    environment:
-      KAFKA_CREATE_TOPICS: "my-topic:3:1"
-      KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENERS: 'PLAINTEXT://:9094'
-      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://localhost:9094'
-    ports:
-      - 9094:9094
-    links:
-     - zookeeper
-    volumes:
-      # - kafka-logs:/tmp/kafka-logs
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - kafka
+    # networks:
+    #   - kafka
+
 # volumes:
 #   kafka-logs:
 
-networks:
-  kafka:
-    driver: bridge
+# networks:
+#   kafka:
+#     driver: bridge

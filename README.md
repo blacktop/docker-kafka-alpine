@@ -84,7 +84,10 @@ $ docker run --rm \
 Or you can use [docker-compose](https://docs.docker.com/compose/) to make a single node cluster:
 
 ```bash
-$ curl -sL https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master/docker-compose.yml > docker-compose.yml && docker-compose up -d
+$ curl -sL https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master/docker-compose.yml > docker-compose.yml
+# Change KAFKA_ADVERTISED_HOST_NAME in docker-compose.yml to `docker-machine ip` or IP of your VM.
+# OR supply a HOSTNAME_COMMAND function.
+$ docker-compose up -d
 $ docker-compose scale kafka=3
 ```
 
