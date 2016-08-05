@@ -24,6 +24,12 @@ if [[ "$1" == *kafka* || "$1" == *zookeeper* ]]; then
 		echo "Configuring Zookeeper..."
 		/configure-zookeeper.sh
 	fi
+	# if [[ "$1" == *kafka-topics.sh ]];then
+	# 	chown -R kafka:kafka /opt/kafka
+	#
+	# 	echo "Configuring Kafka..."
+	# 	/configure-kafka.sh
+	# fi
 	set -- gosu kafka /sbin/tini -- "$@"
 fi
 

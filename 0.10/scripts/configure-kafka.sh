@@ -14,13 +14,16 @@ fi
 if [[ -z "$KAFKA_ADVERTISED_PORT" ]]; then
     echo "DOCKER_KAFKA_PORT" "$(docker port `hostname` $KAFKA_PORT | sed -r "s/.*:(.*)/\1/g")"
     export KAFKA_ADVERTISED_PORT=$(docker port `hostname` $KAFKA_PORT | sed -r "s/.*:(.*)/\1/g")
+    if [[ -z "$KAFKA_ADVERTISED_PORT" ]]; then
+        export KAFKA_ADVERTISED_PORT=$KAFKA_PORT
+    fi
 fi
 if [[ -z "$KAFKA_ADVERTISED_HOST_NAME" && -n "$HOSTNAME_COMMAND" ]]; then
     export KAFKA_ADVERTISED_HOST_NAME=$(eval $HOSTNAME_COMMAND)
 fi
 if [[ -z "$KAFKA_LISTENERS" ]]; then
     export KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:$KAFKA_PORT
-    unset KAFKA_PORT
+    # unset KAFKA_PORT
 fi
 if [[ -z "$KAFKA_ADVERTISED_LISTENERS" ]]; then
     export KAFKA_ADVERTISED_LISTENERS="PLAINTEXT://$KAFKA_ADVERTISED_HOST_NAME:$KAFKA_ADVERTISED_PORT"
@@ -30,6 +33,20 @@ fi
 
 if [[ -z "$KAFKA_ZOOKEEPER_CONNECT" ]]; then
     export KAFKA_ZOOKEEPER_CONNECT=$(env | grep ZOOKEEPER.*PORT_2181_TCP= | sed -e 's|.*tcp://||' | paste -sd ,)
+    if [[ -z "$KAFKA_ZOOKEEPER_CONNECT" ]]; then
+        # Start zookeeper locally.
+    		echo "Configuring Zookeeper..."
+    		/configure-zookeeper.sh
+        zookeeper-server-start.sh config/zookeeper.properties &
+        # wait for zookeeper to start
+      	while ! nc -z localhost 2181
+      	do
+      	  echo "$(date) - still trying"
+      	  sleep 1
+      	done
+      	echo "$(date) - connected successfully"
+        export KAFKA_ZOOKEEPER_CONNECT="localhost:2181"
+    fi
 fi
 
 # Set run env options
@@ -59,6 +76,10 @@ done
 # Make logs dirs
 mkdir -p $KAFKA_LOG_DIRS
 chown -R kafka:kafka $KAFKA_LOG_DIRS
+
+if [[ -n "$KAFKA_CREATE_TOPICS" ]]; then
+    gosu kafka /create-topics.sh &
+fi
 
 # KAFKA_PID=0
 #
