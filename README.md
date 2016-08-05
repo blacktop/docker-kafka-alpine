@@ -28,10 +28,9 @@ blacktop/kafka      0.8                 230.1 MB
 ```
 docker run -d \
            -p 9092:9092 \
-           -p 2181:2181 \
            -e KAFKA_ADVERTISED_HOST_NAME=192.168.99.100 \
            -e KAFKA_CREATE_TOPICS="test-topic:1:1" \
-           blacktop/kafka:0.10
+           blacktop/kafka
 ```
 
 This will create a single-node kafka broker (*listening on 192.168.99.100:9092*), a local zookeeper instance and create the topic `test-topic` with 1 `replication-factor` and 1 `partition`.
