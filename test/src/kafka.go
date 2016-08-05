@@ -66,10 +66,10 @@ func produceStdin(broker kafka.Client) {
 func main() {
 	var hostIP string
 
-	if len(os.Args) > 0 {
+	if len(os.Args) > 1 {
 		hostIP = os.Args[1]
 	} else {
-		log.Fatalln("Please supply Host IP.")
+		log.Fatalln("[ERROR] Please supply Host IP.")
 	}
 
 	cli, err := client.NewEnvClient()
@@ -79,13 +79,20 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	kafkaAddrs := []string{}
+	var kafkaPort string
 
 	for _, container := range containers {
-		if strings.Contains(container.Names[0], "kafka") {
-			ports := container.Ports
-			kafkaAddrs = append(kafkaAddrs, hostIP+":"+strconv.Itoa(ports[0].PublicPort))
+		ports := container.Ports
+		for _, port := range ports {
+			if port.PrivatePort == 9092 {
+				kafkaPort = strconv.Itoa(port.PublicPort)
+			}
 		}
+		fmt.Println("Container: ", container.Names[0])
+		fmt.Println("Ports: ", ports)
+		kafkaAddrs = append(kafkaAddrs, hostIP+":"+kafkaPort)
 	}
 
 	fmt.Println("Kafka Hosts: ", kafkaAddrs)
@@ -96,6 +103,9 @@ func main() {
 		log.Fatalf("cannot connect to kafka cluster: %s", err)
 	}
 	defer broker.Close()
+
+	fmt.Print("Subscribed to topic: ", topic)
+	fmt.Printf("\n\nType something and hit [enter]...\n\n")
 
 	go printConsumed(broker)
 	produceStdin(broker)
