@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- kafka-test binaries
+-	kafka-test binaries
 -	ability to run a single node kafka broker when you don't supply a zookeeper link
 -	KAFKA_LISTENERS, KAFKA_ADVERTISED_LISTENERS env config flags
 -	official configs for reference

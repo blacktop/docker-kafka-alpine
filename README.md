@@ -36,6 +36,30 @@ docker run -d \
 
 This will create a single-node kafka broker (*listening on 192.168.99.100:9092*), a local zookeeper instance and create the topic `test-topic` with 1 `replication-factor` and 1 `partition`.
 
+You can now test your new single-node kafka broker using the binaries in the `test` folder in this repo.
+
+```bash
+$ wget https://github.com/blacktop/docker-kafka-alpine/raw/master/test/darwin/kafka-test
+$ chmod +x kafka-test
+$ ./kafka-test `docker-machine ip`
+```
+
+```bash
+Container:  /small_leavitt
+Ports:  [{0.0.0.0 9092 9092 tcp} {0.0.0.0 2181 2181 tcp}]
+Kafka Hosts:  [192.168.99.100:9092]
+Subscribed to topic: test-topic
+
+Type something and hit [enter]...
+
+1
+2016/08/05 13:02:14 message 0: 1
+2
+2016/08/05 13:02:15 message 1: 2
+3
+42016/08/05 13:02:15 message 2: 3
+```
+
 ### Documentation
 
 ##### To start zookeeper
