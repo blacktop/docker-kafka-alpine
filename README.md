@@ -119,10 +119,24 @@ $ docker run --rm \
 
 #### Tips and Tricks
 
-Get Host IP on Linux
+##### Get Kafka Host IPs
+
+Linux
 
 ```bash
 $ ifconfig docker0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'
+```
+
+Docker Machine
+
+```bash
+$ docker-machine ip <machine_name>
+```
+
+Docker for Mac
+
+```bash
+# It defaults to `localhost`
 ```
 
 ### Known Issues
