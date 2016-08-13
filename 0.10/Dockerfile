@@ -21,7 +21,7 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
 	&& gosu nobody true \
   && apk del --purge build-deps
 
-ENV KAFKA_VERSION 0.10.0.0
+ENV KAFKA_VERSION 0.10.0.1
 ENV SCALA_VERSION 2.11
 
 RUN apk-install bash docker coreutils
