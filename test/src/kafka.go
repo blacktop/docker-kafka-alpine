@@ -73,6 +73,18 @@ func main() {
 	}
 
 	cli, err := client.NewEnvClient()
+	if err != nil {
+		log.Fatal(err)
+	}
+	// Check if client can connect
+	if _, err = cli.Info(context.Background()); err != nil {
+		// If failed to connect try to create docker client via socket
+		defaultHeaders := map[string]string{"User-Agent": "engine-api-cli-1.0"}
+		cli, err = client.NewClient("unix:///var/run/docker.sock", "v1.22", nil, defaultHeaders)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 
 	options := types.ContainerListOptions{All: true}
 	containers, err := cli.ContainerList(context.Background(), options)
