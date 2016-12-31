@@ -3,7 +3,7 @@ machine:
     - docker
 
 general:
-  build_dir: "0.9"
+  build_dir: "0.10"
 
 dependencies:
   cache_directories:
