@@ -15,9 +15,9 @@ services:
     entrypoint: /wait-for-it.sh zookeeper:2181 -s --timeout=5 -- /kafka-entrypoint.sh
     command: kafka-server-start.sh config/server.properties
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_HEAP_OPTS: "-Xmx2G -Xms2G"
+      - "${KAFKA_ADVERTISED_HOST_NAME}:localhost"
+      - "${KAFKA_ZOOKEEPER_CONNECT}:zookeeper:2181"
+      - KAFKA_HEAP_OPTS="-Xmx2G -Xms2G"
     ports:
       - 9092
     links:

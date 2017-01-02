@@ -18,7 +18,7 @@ RUN apk-install -t build-deps curl ca-certificates jq \
   && rm -rf /tmp/* \
   && apk del --purge build-deps
 
-ENV PATH $PATH:/opt/kafka/bin/
+ENV PATH /sbin:/opt/kafka/bin/:$PATH
 
 WORKDIR /opt/kafka
 

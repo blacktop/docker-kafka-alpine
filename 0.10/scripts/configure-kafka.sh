@@ -78,7 +78,7 @@ mkdir -p $KAFKA_LOG_DIRS
 chown -R kafka:kafka $KAFKA_LOG_DIRS
 
 if [[ -n "$KAFKA_CREATE_TOPICS" ]]; then
-    gosu kafka /create-topics.sh &
+    su-exec kafka /create-topics.sh &
 fi
 
 # KAFKA_PID=0

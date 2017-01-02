@@ -30,7 +30,7 @@ if [[ "$1" == *kafka* || "$1" == *zookeeper* ]]; then
 	# 	echo "Configuring Kafka..."
 	# 	/configure-kafka.sh
 	# fi
-	set -- su-exec kafka /sbin/tini -- "$@"
+	set -- su-exec kafka tini -- "$@"
 fi
 
 exec "$@"
