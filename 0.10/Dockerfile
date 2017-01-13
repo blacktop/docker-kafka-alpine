@@ -36,4 +36,4 @@ ENTRYPOINT ["/kafka-entrypoint.sh"]
 
 CMD ["kafka-server-start.sh", "config/server.properties"]
 
-HEALTHCHECK --interval=5s --timeout=2s --retries=5 CMD bin/health.sh
+# HEALTHCHECK --interval=5s --timeout=2s --retries=5 CMD bin/health.sh
