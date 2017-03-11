@@ -4,8 +4,8 @@ MAINTAINER blacktop, https://github.com/blacktop
 
 RUN apk-install openjdk8-jre tini su-exec
 
-ENV KAFKA_VERSION 0.10.1.1
-ENV SCALA_VERSION 2.11
+ENV KAFKA_VERSION 0.10.2.0
+ENV SCALA_VERSION 2.12
 
 RUN apk-install bash docker coreutils
 RUN apk-install -t .build-deps curl ca-certificates jq \
