@@ -3,20 +3,20 @@
 docker-kafka-alpine
 ===================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker image-246 MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker%20image-223%20MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
 
 Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
 ### Dependencies
 
--	[gliderlabs/alpine:3.4](https://index.docker.io/_/gliderlabs/alpine/)
+-	[alpine:3.6](https://hub.docker.com/_/alpine/)
 
 ### Image Tags
 
 ```bash
 REPOSITORY          TAG                 SIZE
-blacktop/kafka      latest              246 MB
-blacktop/kafka      0.10                246 MB
+blacktop/kafka      latest              223 MB
+blacktop/kafka      0.10                223 MB
 blacktop/kafka      0.9                 238.6 MB
 blacktop/kafka      0.8                 227.5 MB
 ```
