@@ -15,6 +15,7 @@ RUN apk add --no-cache -t .build-deps curl ca-certificates jq \
 		| tar -xzf - -C /opt \
 	&& mv /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka \
   && adduser -DH -s /sbin/nologin kafka \
+  && chown -R kafka: /opt/kafka \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
@@ -26,7 +27,7 @@ VOLUME ["/tmp/kafka-logs"]
 
 EXPOSE 9092 2181
 
-COPY config/log4j.properties /opt/kafka/config/
+# COPY config/log4j.properties /opt/kafka/config/
 COPY config/server.properties /opt/kafka/config/
 COPY config/zookeeper.properties /opt/kafka/config/
 COPY entrypoints/kafka-entrypoint-v4.sh /kafka-entrypoint.sh

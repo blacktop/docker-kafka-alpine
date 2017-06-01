@@ -23,7 +23,7 @@ test:
 
 run:
 	docker run -d \
-						 --name kafka \
+	           --name kafka \
 	           -p 9092:9092 \
 	           -e KAFKA_ADVERTISED_HOST_NAME=192.168.99.100 \
 	           -e KAFKA_CREATE_TOPICS="test-topic:1:1" $(REPO)/$(NAME):$(BUILD)
