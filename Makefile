@@ -22,7 +22,7 @@ test:
 	echo "Write Tests!!!" || true
 
 run:
-	ddocker run -d \
+	docker run -d \
 						 --name kafka \
 	           -p 9092:9092 \
 	           -e KAFKA_ADVERTISED_HOST_NAME=192.168.99.100 \
