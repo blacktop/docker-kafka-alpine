@@ -1,4 +1,4 @@
-![kafka-logo](https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master/kafka-logo.png)
+![kafka-logo](https://raw.githubusercontent.com/blacktop/docker-kafka-alpine/master/docs/kafka-logo.png)
 
 docker-kafka-alpine
 ===================

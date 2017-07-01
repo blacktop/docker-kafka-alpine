@@ -73,7 +73,7 @@ Vagrant.configure("2") do |config|
     sudo apt-get install -y linux-image-extra-$(uname -r)
     sudo apt-get install -y docker-engine
     sudo usermod -aG docker vagrant
-    curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
     curl -s https://raw.githubusercontent.com/ZZROTDesign/docker-clean/v2.0.4/docker-clean | sudo tee /usr/local/bin/docker-clean > /dev/null
     sudo chmod +x /usr/local/bin/docker-clean

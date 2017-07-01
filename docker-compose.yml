@@ -41,8 +41,6 @@ services:
     command: kafka-server-start.sh config/server.properties
     environment:
       - KAFKA_ADVERTISED_HOST_NAME=localhost
-      # - "${KAFKA_ADVERTISED_HOST_NAME}:localhost"
-      # - "${KAFKA_ADVERTISED_HOST_NAME}:localhost"
       - KAFKA_CREATE_TOPICS=docker:1:1
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_HEAP_OPTS=-Xmx2G -Xms2G

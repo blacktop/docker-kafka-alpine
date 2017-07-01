@@ -21,12 +21,11 @@ tags:
 
 test:
 	docker rm -f kafka || true
-	docker run -d \
-             --name kafka \
-	           -p 9092:9092 \
-	           -e KAFKA_ADVERTISED_HOST_NAME=localhost \
-	           -e KAFKA_CREATE_TOPICS="test-topic:1:1" \
-	           $(ORG)/$(NAME):$(BUILD)
+	docker --init run -d \
+				 --name kafka \
+				 -p 9092:9092 \
+				 -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+				 -e KAFKA_CREATE_TOPICS="test-topic:1:1" $(ORG)/$(NAME):$(BUILD)
 	kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic 2>/dev/null > kafka.out &
 	sleep 10; echo "shrinky-dinks" | kafka-console-producer --topic=test-topic --broker-list=localhost:9092
 	grep -q "shrinky-dinks" kafka.out
@@ -36,11 +35,11 @@ tar:
 	docker save $(ORG)/$(NAME):$(BUILD) -o $(NAME).tar
 
 run:
-	docker run -d \
-	           --name kafka \
-	           -p 9092:9092 \
-	           -e KAFKA_ADVERTISED_HOST_NAME=localhost \
-	           -e KAFKA_CREATE_TOPICS="test-topic:1:1" $(ORG)/$(NAME):$(BUILD)
+	docker --init run -d \
+				 --name kafka \
+				 -p 9092:9092 \
+				 -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+				 -e KAFKA_CREATE_TOPICS="test-topic:1:1" $(ORG)/$(NAME):$(BUILD)
 
 circle:
 	http https://circleci.com/api/v1.1/project/github/${REPO} | jq '.[0].build_num' > .circleci/build_num
