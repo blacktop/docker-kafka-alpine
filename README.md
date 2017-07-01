@@ -24,18 +24,18 @@ blacktop/kafka      0.8                 227.5MB
 
 ### Getting Started
 
-> **NOTE:** I am assuming use of docker-machine with these examples. (`KAFKA_ADVERTISED_HOST_NAME=192.168.99.100`\)
+> **NOTE:** I am assuming use of Docker for Mac with these examples. (`KAFKA_ADVERTISED_HOST_NAME=localhost`\)
 
 ```
 docker run -d \
            --name kafka \
            -p 9092:9092 \
-           -e KAFKA_ADVERTISED_HOST_NAME=192.168.99.100 \
+           -e KAFKA_ADVERTISED_HOST_NAME=localhost \
            -e KAFKA_CREATE_TOPICS="test-topic:1:1" \
            blacktop/kafka
 ```
 
-This will create a single-node kafka broker (*listening on 192.168.99.100:9092*), a local zookeeper instance and create the topic `test-topic` with 1 `replication-factor` and 1 `partition`.
+This will create a single-node kafka broker (*listening on localhost:9092*), a local zookeeper instance and create the topic `test-topic` with 1 `replication-factor` and 1 `partition`.
 
 You can now test your new single-node kafka broker using
 
@@ -49,8 +49,8 @@ $ go get github.com/Shopify/sarama/tools/kafka-console-producer
 ```
 
 ```bash
-$	kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic &
-$	echo "shrinky-dinks" | kafka-console-producer --topic=test-topic --broker-list=localhost:9092
+$ kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic &
+$ echo "shrinky-dinks" | kafka-console-producer --topic=test-topic --broker-list=localhost:9092
 ```
 
 ### Documentation
