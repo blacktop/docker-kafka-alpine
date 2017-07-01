@@ -37,7 +37,7 @@ docker run -d \
 
 This will create a single-node kafka broker (*listening on localhost:9092*), a local zookeeper instance and create the topic `test-topic` with 1 `replication-factor` and 1 `partition`.
 
-You can now test your new single-node kafka broker using
+You can now test your new single-node kafka broker using [Shopify/sarama's](https://github.com/Shopify/sarama) **kafka-console-producer** and **kafka-console-consumer**
 
 #### Required
 
@@ -47,6 +47,8 @@ You can now test your new single-node kafka broker using
 $ go get github.com/Shopify/sarama/tools/kafka-console-consumer
 $ go get github.com/Shopify/sarama/tools/kafka-console-producer
 ```
+
+Now start a consumer in the background and then send some data to **kafka** via a producer
 
 ```bash
 $ kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic &
