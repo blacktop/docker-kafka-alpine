@@ -38,7 +38,7 @@ jobs:
           name: Build application Docker image
           command: |
             docker version
-            cd 2.5
+            cd 0.11
             docker build --cache-from=app -t app .
       - run:
           name: Get Docker image size
