@@ -48,7 +48,7 @@ $ go get github.com/Shopify/sarama/tools/kafka-console-consumer
 $ go get github.com/Shopify/sarama/tools/kafka-console-producer
 ```
 
-Now start a consumer in the background and then send some data to **kafka** via a producer
+Now start a *consumer* in the background and then send some data to **kafka** via a *producer*
 
 ```bash
 $ kafka-console-consumer --bootstrap-server=localhost:9092 --topic=test-topic &
