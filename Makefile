@@ -20,8 +20,24 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(ORG)/$(NAME)
 
 test:
-	docker run -d --name zookeeper -p 9092:9092 -e KAFKA_ADVERTISED_HOST_NAME=localhost $(ORG)/$(NAME):$(BUILD)
-	docker run --link zookeeper $(ORG)/$(NAME):$(BUILD) kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic test-topic
+	docker rm -f zookeeper || true
+	docker rm -f kafka || true
+	docker run -d \
+	           -p 9092:9092 \
+	           -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+	           -e KAFKA_CREATE_TOPICS="test-topic:1:1" \
+	           $(ORG)/$(NAME):$(BUILD)
+	# docker run -d --name zookeeper -p 2181:2181 $(ORG)/$(NAME):$(BUILD) zookeeper-server-start.sh config/zookeeper.properties
+	# docker run -d \
+  #            -v /var/run/docker.sock:/var/run/docker.sock \
+  #            -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+  #            --link zookeeper \
+  #            -p 9092:9092 \
+  #            --name kafka \
+  #            $(ORG)/$(NAME):$(BUILD)
+	# docker run --rm \
+  #            --link zookeeper \
+  #            $(ORG)/$(NAME):$(BUILD) kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic test-topic
 
 tar:
 	docker save $(ORG)/$(NAME):$(BUILD) -o $(NAME).tar
@@ -42,7 +58,7 @@ circle:
 
 clean:
 	docker-clean stop
-	docker rmi $(ORG)/$(NAME)
-	docker rmi $(ORG)/$(NAME):$(BUILD)
+	docker rmi $(ORG)/$(NAME) || true
+	docker rmi $(ORG)/$(NAME):$(BUILD) || true
 
 .PHONY: build size tags test tar clean circle

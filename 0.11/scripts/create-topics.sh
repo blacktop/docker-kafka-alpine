@@ -6,9 +6,15 @@ if [[ -z "$START_TIMEOUT" ]]; then
     START_TIMEOUT=600
 fi
 
+${KAFKA_PORT:=9092}
+
 start_timeout_exceeded=false
 count=0
 step=5
+
+echo "===> looking for $KAFKA_PORT"
+netstat -lnt
+
 while netstat -lnt | awk '$4 ~ /:'$KAFKA_PORT'$/ {exit 1}'; do
     echo "waiting for kafka to be ready"
     sleep $step;
@@ -28,6 +34,6 @@ if [[ -n $KAFKA_CREATE_TOPICS ]]; then
     IFS=','; for topicToCreate in $KAFKA_CREATE_TOPICS; do
         echo "creating topics: $topicToCreate"
         IFS=':' read -a topicConfig <<< "$topicToCreate"
-        JMX_PORT='' kafka-topics.sh --create --zookeeper $KAFKA_ZOOKEEPER_CONNECT --replication-factor ${topicConfig[2]} --partition ${topicConfig[1]} --topic "${topicConfig[0]}"
+        JMX_PORT='' kafka-topics.sh --create --zookeeper $KAFKA_ZOOKEEPER_CONNECT --replication-factor ${topicConfig[2]} --partitions ${topicConfig[1]} --topic "${topicConfig[0]}"
     done
 fi
