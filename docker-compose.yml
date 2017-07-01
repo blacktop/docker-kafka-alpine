@@ -1,60 +1,59 @@
-version: '2'
-services:
-  zookeeper:
-    image: appcelerator/zookeeper:latest
-    ports:
-     - "2181:2181"
-     - "2888:2888"
-     - "3888:3888"
-  kafka:
-    image: appcelerator/kafka:latest
-    ports:
-     - "9092:9092"
-    environment:
-     - ZOOKEEPER_CONNECT=zookeeper:2181
-     - TOPIC_LIST=bro
-    depends_on:
-     - zookeeper
-  kafka-manager:
-    image: sheepkiller/kafka-manager
-    ports:
-     - "80:9000"
-    environment:
-     - ZK_HOSTS=zookeeper:2181
-    depends_on:
-     - zookeeper
-
-# version: "2.1"
-#
+# version: '2'
 # services:
 #   zookeeper:
-#     container_name: zookeeper
-#     image: blacktop/kafka:0.10
-#     command: zookeeper-server-start.sh config/zookeeper.properties
+#     image: appcelerator/zookeeper:latest
 #     ports:
-#       - 2181:2181
-#     # network_mode: bridge
+#      - "2181:2181"
+#      - "2888:2888"
+#      - "3888:3888"
 #   kafka:
-#     image: blacktop/kafka:0.10
-#     depends_on:
-#       - zookeeper
-#     entrypoint: /wait-for-it.sh zookeeper:2181 -s --timeout=5 -- /kafka-entrypoint.sh
-#     command: kafka-server-start.sh config/server.properties
-#     environment:
-#       - KAFKA_ADVERTISED_HOST_NAME=localhost
-#       # - "${KAFKA_ADVERTISED_HOST_NAME}:localhost"
-#       # - "${KAFKA_ADVERTISED_HOST_NAME}:localhost"
-#       - KAFKA_CREATE_TOPICS=docker:1:1
-#       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-#       - KAFKA_HEAP_OPTS=-Xmx2G -Xms2G
+#     image: appcelerator/kafka:latest
 #     ports:
-#       - 9092
-#     links:
+#      - "9092:9092"
+#     environment:
+#      - ZOOKEEPER_CONNECT=zookeeper:2181
+#      - TOPIC_LIST=bro
+#     depends_on:
 #      - zookeeper
-#     volumes:
-#       # - kafka-logs:/tmp/kafka-logs
-#       - /var/run/docker.sock:/var/run/docker.sock
-#     # network_mode: bridge
+#   kafka-manager:
+#     image: sheepkiller/kafka-manager
+#     ports:
+#      - "80:9000"
+#     environment:
+#      - ZK_HOSTS=zookeeper:2181
+#     depends_on:
+#      - zookeeper
 
-# volumes:
-#   kafka-logs:
+version: "3"
+services:
+  zookeeper:
+    container_name: zookeeper
+    image: blacktop/kafka:${VERSION:-latest}
+    command: zookeeper-server-start.sh config/zookeeper.properties
+    ports:
+      - 2181:2181
+    # network_mode: bridge
+  kafka:
+    image: blacktop/kafka:${VERSION:-latest}
+    depends_on:
+      - zookeeper
+    entrypoint: /wait-for-it.sh zookeeper:2181 -s --timeout=5 -- /kafka-entrypoint.sh
+    command: kafka-server-start.sh config/server.properties
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=localhost
+      # - "${KAFKA_ADVERTISED_HOST_NAME}:localhost"
+      # - "${KAFKA_ADVERTISED_HOST_NAME}:localhost"
+      - KAFKA_CREATE_TOPICS=docker:1:1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_HEAP_OPTS=-Xmx2G -Xms2G
+    ports:
+      - 9092
+    links:
+     - zookeeper
+    volumes:
+      # - kafka-logs:/tmp/kafka-logs
+      - /var/run/docker.sock:/var/run/docker.sock
+    # network_mode: bridge
+
+volumes:
+  kafka-logs:

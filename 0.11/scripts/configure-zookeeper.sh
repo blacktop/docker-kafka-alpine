@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -eo pipefail
 
 if [[ -z "$ZOOKEEPER_PORT" ]]; then
     export ZOOKEEPER_PORT=2181

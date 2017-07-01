@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 ${KAFKA_BROKER_ID:=-1}
 ${KAFKA_PORT:=9092}
 

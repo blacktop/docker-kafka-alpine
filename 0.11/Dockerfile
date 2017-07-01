@@ -2,12 +2,12 @@ FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-RUN apk add --no-cache openjdk8-jre tini su-exec
-
 ENV KAFKA_VERSION 0.11.0.0
 ENV SCALA_VERSION 2.12
 
-RUN apk add --no-cache bash docker coreutils
+LABEL name="kafka" version=${KAFKA_VERSION}
+
+RUN apk add --no-cache openjdk8-jre bash docker coreutils su-exec
 RUN apk add --no-cache -t .build-deps curl ca-certificates jq \
   && mkdir -p /opt \
 	&& mirror=$(curl --stderr /dev/null https://www.apache.org/dyn/closer.cgi\?as_json\=1 | jq -r '.preferred') \
@@ -30,7 +30,7 @@ EXPOSE 9092 2181
 # COPY config/log4j.properties /opt/kafka/config/
 COPY config/server.properties /opt/kafka/config/
 COPY config/zookeeper.properties /opt/kafka/config/
-COPY entrypoints/kafka-entrypoint-v4.sh /kafka-entrypoint.sh
+COPY kafka-entrypoint.sh /kafka-entrypoint.sh
 COPY scripts /
 
 ENTRYPOINT ["/kafka-entrypoint.sh"]
