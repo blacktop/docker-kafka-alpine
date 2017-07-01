@@ -20,24 +20,17 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(ORG)/$(NAME)
 
 test:
-	docker rm -f zookeeper || true
 	docker rm -f kafka || true
 	docker run -d \
+             --name kafka \
 	           -p 9092:9092 \
 	           -e KAFKA_ADVERTISED_HOST_NAME=localhost \
 	           -e KAFKA_CREATE_TOPICS="test-topic:1:1" \
 	           $(ORG)/$(NAME):$(BUILD)
-	# docker run -d --name zookeeper -p 2181:2181 $(ORG)/$(NAME):$(BUILD) zookeeper-server-start.sh config/zookeeper.properties
-	# docker run -d \
-  #            -v /var/run/docker.sock:/var/run/docker.sock \
-  #            -e KAFKA_ADVERTISED_HOST_NAME=localhost \
-  #            --link zookeeper \
-  #            -p 9092:9092 \
-  #            --name kafka \
-  #            $(ORG)/$(NAME):$(BUILD)
-	# docker run --rm \
-  #            --link zookeeper \
-  #            $(ORG)/$(NAME):$(BUILD) kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic test-topic
+	kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic 2>/dev/null > kafka.out &
+	sleep 10; echo "shrinky-dinks" | kafka-console-producer --topic=test-topic --broker-list=localhost:9092
+	grep -q "shrinky-dinks" kafka.out
+	rm kafka.out
 
 tar:
 	docker save $(ORG)/$(NAME):$(BUILD) -o $(NAME).tar

@@ -60,8 +60,11 @@ jobs:
           name: Run tests
           command: |
             set -x
-            docker --init run -d --name zookeeper -p 9092:9092 -e KAFKA_ADVERTISED_HOST_NAME=localhost app
-            docker --init run --link zookeeper app kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic test-topic
+            docker run -d \
+                       --name kafka \
+                       -p 9092:9092 \
+                       -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+                       -e KAFKA_CREATE_TOPICS="test-topic:1:1" app
       # - run:
       #     name: Review results
       #     command: |
