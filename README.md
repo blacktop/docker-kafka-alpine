@@ -57,8 +57,8 @@ $ echo "shrinky-dinks" | kafka-console-producer --broker-list=localhost:9092 --t
 
 ### Documentation
 
--	[Usage](https://github.com/blacktop/blacktop/docker-kafka-alpine/blob/master/docs/usage.md)
--	[Tips and Tricks](https://github.com/blacktop/blacktop/docker-kafka-alpine/blob/master/docs/tips.md)
+-	[Usage](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/usage.md)
+-	[Tips and Tricks](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/tips.md)
 
 ### Issues
 
