@@ -52,7 +52,7 @@ Now start a consumer in the background and then send some data to **kafka** via 
 
 ```bash
 $ kafka-console-consumer --bootstrap-server=localhost:9092 --topic=test-topic &
-$ echo "shrinky-dinks" | kafka-console-producer --topic=test-topic --broker-list=localhost:9092
+$ echo "shrinky-dinks" | kafka-console-producer --broker-list=localhost:9092 --topic=test-topic
 ```
 
 ### Documentation
