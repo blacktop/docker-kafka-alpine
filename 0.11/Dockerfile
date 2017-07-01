@@ -1,10 +1,10 @@
-FROM openjdk:jre-alpine
+FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV KAFKA_VERSION 0.10.2.1
+ENV KAFKA_VERSION 0.11.0.0
 ENV SCALA_VERSION 2.12
 
 RUN apk add --no-cache bash docker coreutils
