@@ -21,7 +21,12 @@ endif
 tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(ORG)/$(NAME)
 
-test: stop ## Test docker image
+.PHONY: deps
+deps:
+	go get -u github.com/Shopify/sarama/tools/kafka-console-consumer
+	go get -u github.com/Shopify/sarama/tools/kafka-console-producer
+
+test: stop deps ## Test docker image
 	docker rm -f kafka || true
 	docker run -d --init \
 				 --name kafka \
