@@ -62,7 +62,7 @@ jobs:
             go get -u github.com/Shopify/sarama/tools/kafka-console-producer
       - run:
           name: Test consumer
-          command: /go/bin/kafka-console-consumer ---bootstrap-server localhost:9092 ---topic test-topic > kafka.out || true
+          command: "/go/bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic > kafka.out || true"
 
       - run:
           name: Test producer
