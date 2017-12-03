@@ -54,21 +54,20 @@ jobs:
                        -e KAFKA_CREATE_TOPICS="test-topic:1:1" app
             docker inspect -f {{.State.Running}} kafka
             docker inspect -f {{.State.ExitCode}} kafka
-            docker exec kafka true                       
-      - run:
-          name: Tests get deps
-          command: |
-            set -x
-            export GOPATH=/go
-            go version
-            go get -u github.com/Shopify/sarama/tools/kafka-console-consumer
-            go get -u github.com/Shopify/sarama/tools/kafka-console-producer
-      - run:
-          name: Test consumer
-          command: '/go/bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic > kafka.out || true'
-
-      - run:
-          name: Test producer
-          command: |
-            echo shrinky-dinks | /go/bin/kafka-console-producer --topic test-topic --broker-list localhost:9092 || true
-            grep -q "shrinky-dinks" kafka.out
+            docker exec kafka true
+      # - run:
+      #     name: Tests get deps
+      #     command: |
+      #       set -x
+      #       export GOPATH=/go
+      #       go version
+      #       go get -u github.com/Shopify/sarama/tools/kafka-console-consumer
+      #       go get -u github.com/Shopify/sarama/tools/kafka-console-producer
+      # - run:
+      #     name: Test consumer
+      #     command: '/go/bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic > kafka.out || true'
+      # - run:
+      #     name: Test producer
+      #     command: |
+      #       echo shrinky-dinks | /go/bin/kafka-console-producer --topic test-topic --broker-list localhost:9092 || true
+      #       grep -q "shrinky-dinks" kafka.out
