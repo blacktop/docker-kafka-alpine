@@ -45,18 +45,25 @@ jobs:
           paths:
             - /caches/app.tar
       - run:
-          name: Run tests
+          name: Tests Start Kafka
+          command: |
+            docker run -d \
+                       --name kafka \
+                       -p 9092:9092 \
+                       -e KAFKA_ADVERTISED_HOST_NAME=localhost \
+                       -e KAFKA_CREATE_TOPICS="test-topic:1:1" app
+      - run:
+          name: Tests Get Deps
           command: |
             set -x
             export GOPATH=/go
             export PATH=$PATH:$GOPATH/bin
             go get -u github.com/Shopify/sarama/tools/kafka-console-consumer
             go get -u github.com/Shopify/sarama/tools/kafka-console-producer
-            docker run -d \
-                       --name kafka \
-                       -p 9092:9092 \
-                       -e KAFKA_ADVERTISED_HOST_NAME=localhost \
-                       -e KAFKA_CREATE_TOPICS="test-topic:1:1" app
+      - run:
+          name: Test Consumer
+          command: |
+            set -x
             kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic 2>/dev/null > kafka.out &
-            sleep 10; echo "shrinky-dinks" | kafka-console-producer --topic test-topic --broker-list localhost:9092
+            echo "shrinky-dinks" | kafka-console-producer --topic test-topic --broker-list localhost:9092
             grep -q "shrinky-dinks" kafka.out
