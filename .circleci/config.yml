@@ -57,13 +57,13 @@ jobs:
           command: |
             set -x
             export GOPATH=/go
-            export PATH=$PATH:$GOPATH/bin
             go get -u github.com/Shopify/sarama/tools/kafka-console-consumer
             go get -u github.com/Shopify/sarama/tools/kafka-console-producer
       - run:
           name: Test Consumer
           command: |
             set -x
+            export PATH=$PATH:/go/bin
             kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic 2>/dev/null > kafka.out &
             echo "shrinky-dinks" | kafka-console-producer --topic test-topic --broker-list localhost:9092
             grep -q "shrinky-dinks" kafka.out
