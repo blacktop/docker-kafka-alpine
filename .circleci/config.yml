@@ -52,7 +52,7 @@ jobs:
                        -p 9092:9092 \
                        -e KAFKA_ADVERTISED_HOST_NAME=localhost \
                        -e KAFKA_CREATE_TOPICS="test-topic:1:1" app
-            docker inspect -f {{.State.Running}} kafka
+            sleep 10; docker inspect -f {{.State.Running}} kafka
             docker inspect -f {{.State.ExitCode}} kafka
             docker exec kafka true
       # - run:
