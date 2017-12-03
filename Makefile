@@ -23,7 +23,7 @@ tags:
 
 test: stop ## Test docker image
 	docker rm -f kafka || true
-	docker --init run -d \
+	docker run -d --init \
 				 --name kafka \
 				 -p 9092:9092 \
 				 -e KAFKA_ADVERTISED_HOST_NAME=localhost \
