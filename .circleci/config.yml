@@ -45,7 +45,7 @@ jobs:
           paths:
             - /caches/app.tar
       - run:
-          name: Tests Start Kafka
+          name: Tests start kafka
           command: |
             docker run -d \
                        --name kafka \
@@ -53,7 +53,7 @@ jobs:
                        -e KAFKA_ADVERTISED_HOST_NAME=localhost \
                        -e KAFKA_CREATE_TOPICS="test-topic:1:1" app
       - run:
-          name: Tests Get Deps
+          name: Tests get deps
           command: |
             set -x
             export GOPATH=/go
@@ -62,10 +62,10 @@ jobs:
       - run:
           name: Test consumer
           command: |
-            /go/bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic 2>/dev/null > kafka.out
+            /go/bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic > kafka.out || true
 
       - run:
           name: Test producer
           command: |
-            echo "shrinky-dinks" | /go/bin/kafka-console-producer --topic test-topic --broker-list localhost:9092
+            echo "shrinky-dinks" | /go/bin/kafka-console-producer --topic test-topic --broker-list localhost:9092 || true
             grep -q "shrinky-dinks" kafka.out
