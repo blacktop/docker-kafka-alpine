@@ -8,7 +8,7 @@ Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
 ## Dependencies
 
-- [alpine:3.6](https://hub.docker.com/_/alpine/)
+- [alpine:3.7](https://hub.docker.com/_/alpine/)
 
 ## Image Tags
 
