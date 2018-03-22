@@ -2,7 +2,7 @@ FROM alpine:3.7
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV KAFKA_VERSION 1.0.0
+ENV KAFKA_VERSION 1.0.1
 ENV SCALA_VERSION 2.12
 
 LABEL name="kafka" version=${KAFKA_VERSION}
@@ -10,10 +10,10 @@ LABEL name="kafka" version=${KAFKA_VERSION}
 RUN apk add --no-cache openjdk8-jre bash docker coreutils su-exec
 RUN apk add --no-cache -t .build-deps curl ca-certificates jq \
   && mkdir -p /opt \
-	&& mirror=$(curl --stderr /dev/null https://www.apache.org/dyn/closer.cgi\?as_json\=1 | jq -r '.preferred') \
-	&& curl -sSL "${mirror}kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" \
-		| tar -xzf - -C /opt \
-	&& mv /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka \
+  && mirror=$(curl --stderr /dev/null https://www.apache.org/dyn/closer.cgi\?as_json\=1 | jq -r '.preferred') \
+  && curl -sSL "${mirror}kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" \
+  | tar -xzf - -C /opt \
+  && mv /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka \
   && adduser -DH -s /sbin/nologin kafka \
   && chown -R kafka: /opt/kafka \
   && rm -rf /tmp/* \
