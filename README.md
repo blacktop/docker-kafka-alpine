@@ -51,8 +51,8 @@ $ go get github.com/Shopify/sarama/tools/kafka-console-producer
 Now start a _consumer_ in the background and then send some data to **kafka** via a _producer_
 
 ```bash
-$ kafka-console-consumer --bootstrap-server=localhost:9092 --topic=test-topic &
-$ echo "shrinky-dinks" | kafka-console-producer --broker-list=localhost:9092 --topic=test-topic
+$ kafka-console-consumer --brokers=localhost:9092 --topic=test-topic &
+$ echo "shrinky-dinks" | kafka-console-producer --brokers=localhost:9092 --topic=test-topic
 ```
 
 ## Documentation
