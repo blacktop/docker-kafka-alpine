@@ -1,4 +1,4 @@
-.PHONY: build size tags test tar push run ssh stop circle
+lear.PHONY: build size tags test tar push run ssh stop circle
 
 REPO=blacktop/docker-kafka-alpine
 ORG=blacktop
@@ -28,15 +28,16 @@ deps:
 
 test: stop deps ## Test docker image
 	docker rm -f kafka || true
+	rm /tmp/kafka.out  || true
 	docker run -d --init \
 				 --name kafka \
 				 -p 9092:9092 \
 				 -e KAFKA_ADVERTISED_HOST_NAME=localhost \
 				 -e KAFKA_CREATE_TOPICS="test-topic:1:1" $(ORG)/$(NAME):$(BUILD)
-	kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic 2>/dev/null > kafka.out &
-	sleep 10; echo "shrinky-dinks" | kafka-console-producer --topic=test-topic --broker-list=localhost:9092
-	grep -q "shrinky-dinks" kafka.out
-	rm kafka.out
+	sleep 10; kafka-console-consumer --brokers=localhost:9092 --topic=test-topic | tee -a /tmp/kafka.out &
+	echo "shrinky-dinks" | kafka-console-producer --brokers=localhost:9092 --topic=test-topic
+	grep -q "shrinky-dinks" /tmp/kafka.out
+	rm /tmp/kafka.out
 
 tar: ## Export tar of docker image
 	docker save $(ORG)/$(NAME):$(BUILD) -o $(NAME).tar

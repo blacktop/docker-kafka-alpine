@@ -2,19 +2,20 @@
 
 # docker-kafka-alpine
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker%20image-234MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker%20image-291MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
 
 Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
 ## Dependencies
 
-- [alpine:3.7](https://hub.docker.com/_/alpine/)
+* [alpine:3.7](https://hub.docker.com/_/alpine/)
 
 ## Image Tags
 
 ```bash
 REPOSITORY          TAG                 SIZE
-blacktop/kafka      latest              234MB
+blacktop/kafka      latest              291MB
+blacktop/kafka      1.1                 291MB
 blacktop/kafka      1.0                 234MB
 blacktop/kafka      0.11                226MB
 blacktop/kafka      0.10                223MB
@@ -41,7 +42,7 @@ You can now test your new single-node kafka broker using [Shopify/sarama's](http
 
 ### Required
 
-- [Golang](https://golang.org/doc/install)
+* [Golang](https://golang.org/doc/install)
 
 ```bash
 $ go get github.com/Shopify/sarama/tools/kafka-console-consumer
@@ -57,8 +58,8 @@ $ echo "shrinky-dinks" | kafka-console-producer --brokers=localhost:9092 --topic
 
 ## Documentation
 
-- [Usage](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/usage.md)
-- [Tips and Tricks](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/tips.md)
+* [Usage](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/usage.md)
+* [Tips and Tricks](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/tips.md)
 
 ## Issues
 
@@ -70,7 +71,7 @@ Heavily (if not entirely) influenced by <https://github.com/wurstmeister/kafka-d
 
 ## Todo
 
-- [x] Add ability to run a single node kafka broker when you don't supply a zookeeper link.
+* [x] Add ability to run a single node kafka broker when you don't supply a zookeeper link.
 
 ## CHANGELOG
 
