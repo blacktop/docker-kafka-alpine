@@ -8,7 +8,7 @@ Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
 ## Dependencies
 
-* [alpine:3.7](https://hub.docker.com/_/alpine/)
+- [alpine:3.7](https://hub.docker.com/_/alpine/)
 
 ## Image Tags
 
@@ -42,7 +42,7 @@ You can now test your new single-node kafka broker using [Shopify/sarama's](http
 
 ### Required
 
-* [Golang](https://golang.org/doc/install)
+- [Golang](https://golang.org/doc/install)
 
 ```bash
 $ go get github.com/Shopify/sarama/tools/kafka-console-consumer
@@ -58,8 +58,8 @@ $ echo "shrinky-dinks" | kafka-console-producer --brokers=localhost:9092 --topic
 
 ## Documentation
 
-* [Usage](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/usage.md)
-* [Tips and Tricks](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/tips.md)
+- [Usage](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/usage.md)
+- [Tips and Tricks](https://github.com/blacktop/docker-kafka-alpine/blob/master/docs/tips.md)
 
 ## Issues
 
@@ -71,7 +71,7 @@ Heavily (if not entirely) influenced by <https://github.com/wurstmeister/kafka-d
 
 ## Todo
 
-* [x] Add ability to run a single node kafka broker when you don't supply a zookeeper link.
+- [x] Add ability to run a single node kafka broker when you don't supply a zookeeper link.
 
 ## CHANGELOG
 
@@ -85,4 +85,4 @@ Please update the [CHANGELOG.md](https://github.com/blacktop/docker-kafka-alpine
 
 ## License
 
-MIT Copyright (c) 2016-2017 **blacktop**
+MIT Copyright (c) 2016-2018 **blacktop**
