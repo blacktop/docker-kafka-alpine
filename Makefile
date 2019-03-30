@@ -23,8 +23,7 @@ tags:
 
 .PHONY: deps
 deps:
-	go get -u github.com/Shopify/sarama/tools/kafka-console-consumer
-	go get -u github.com/Shopify/sarama/tools/kafka-console-producer
+	go get github.com/Shopify/sarama/tools/...
 
 test: stop deps ## Test docker image
 	docker rm -f kafka || true
