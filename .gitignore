@@ -8,3 +8,4 @@ node_modules
 
 *.json
 .circleci/build_num
+go.*
