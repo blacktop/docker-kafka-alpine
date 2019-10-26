@@ -2,7 +2,7 @@ FROM alpine:3.10
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV KAFKA_VERSION 2.3.0
+ENV KAFKA_VERSION 2.3.1
 ENV SCALA_VERSION 2.12
 
 LABEL name="kafka" version=${KAFKA_VERSION}
