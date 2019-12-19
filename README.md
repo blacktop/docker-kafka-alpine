@@ -2,7 +2,7 @@
 
 # docker-kafka-alpine
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker%20image-437MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker%20image-441MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
 
 Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
@@ -14,13 +14,14 @@ Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
 ``` bash
 REPOSITORY          TAG                 SIZE
-blacktop/kafka      latest              437MB
+blacktop/kafka      latest              441MB
+blacktop/kafka      2.4                 441MB
 blacktop/kafka      2.3                 437MB
 blacktop/kafka      2.2                 411MB
 blacktop/kafka      2.1                 300MB
 blacktop/kafka      2.0                 300MB
 blacktop/kafka      1.1                 332MB
-blacktop/kafka      1.0                 234MB
+blacktop/kafka      1.0                 441MB
 blacktop/kafka      0.11                226MB
 blacktop/kafka      0.10                437MB
 blacktop/kafka      0.9                 238.6MB
@@ -79,5 +80,5 @@ Heavily (if not entirely) influenced by <https://github.com/wurstmeister/kafka-d
 
 ## License
 
-MIT Copyright (c) 2016-2019 **blacktop**
+MIT Copyright (c) 2016-2020 **blacktop**
 
