@@ -56,6 +56,9 @@ jobs:
             blacktop/kafka:2
             blacktop/kafka:2.8
             blacktop/kafka:2.8.1
+            ghcr.io/blacktop/kafka:2
+            ghcr.io/blacktop/kafka:2.8
+            ghcr.io/blacktop/kafka:2.8.1
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build and push Docker image (v3)
@@ -65,7 +68,12 @@ jobs:
           context: ./3.0
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
+            blacktop/kafka:latest
             blacktop/kafka:3
             blacktop/kafka:3.0
             blacktop/kafka:3.0.0
+            ghcr.io/blacktop/kafka:latest
+            ghcr.io/blacktop/kafka:3
+            ghcr.io/blacktop/kafka:3.0
+            ghcr.io/blacktop/kafka:3.0.0
           labels: ${{ steps.meta.outputs.labels }}
