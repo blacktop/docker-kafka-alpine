@@ -2,7 +2,7 @@
 
 # docker-kafka-alpine
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker%20image-461MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
+[![Publish Docker Image](https://github.com/blacktop/docker-kafka-alpine/actions/workflows/docker-image.yml/badge.svg)](https://github.com/blacktop/docker-kafka-alpine/actions/workflows/docker-image.yml) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker%20image-461MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
 
 Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
