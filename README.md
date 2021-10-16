@@ -2,26 +2,29 @@
 
 # docker-kafka-alpine
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker%20image-473MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kafka-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kafka-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kafka.svg)](https://hub.docker.com/r/blacktop/kafka/) [![Docker Image](https://img.shields.io/badge/docker%20image-461MB-blue.svg)](https://hub.docker.com/r/blacktop/kafka/)
 
 Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
 ## Dependencies
 
-* [alpine:3.12](https://hub.docker.com/_/alpine/)
+* [alpine:3.14](https://hub.docker.com/_/alpine/)
 
 ## Image Tags
 
 ``` bash
 REPOSITORY          TAG                 SIZE
-blacktop/kafka      latest              473MB
+blacktop/kafka      latest              461MB
+blacktop/kafka      3.0                 461MB
+blacktop/kafka      2.8                 473MB
+blacktop/kafka      2.7                 473MB
 blacktop/kafka      2.6                 473MB
 blacktop/kafka      2.5                 438MB
 blacktop/kafka      2.4                 441MB
 blacktop/kafka      2.3                 437MB
 blacktop/kafka      2.2                 411MB
-blacktop/kafka      2.1                 300MB
-blacktop/kafka      2.0                 300MB
+blacktop/kafka      2.1                 461MB
+blacktop/kafka      2.0                 461MB
 blacktop/kafka      1.1                 332MB
 blacktop/kafka      1.0                 441MB
 blacktop/kafka      0.11                226MB
@@ -34,7 +37,7 @@ blacktop/kafka      0.8                 227.5MB
 
 > **NOTE:** I am assuming use of Docker for Mac with these examples.( `KAFKA_ADVERTISED_HOST_NAME=localhost` )
 
-``` 
+```
 docker run -d \
            --name kafka \
            -p 9092:9092 \
@@ -82,5 +85,5 @@ Heavily (if not entirely) influenced by <https://github.com/wurstmeister/kafka-d
 
 ## License
 
-MIT Copyright (c) 2016-2020 **blacktop**
+MIT Copyright (c) 2016-2021 **blacktop**
 
