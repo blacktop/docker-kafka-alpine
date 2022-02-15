@@ -8,13 +8,14 @@ Alpine Linux based [Kafka](http://kafka.apache.org/downloads.html) Docker Image
 
 ## Dependencies
 
-* [alpine:3.14](https://hub.docker.com/_/alpine/)
+* [alpine:3.15](https://hub.docker.com/_/alpine/)
 
 ## Image Tags
 
 ``` bash
 REPOSITORY          TAG                 SIZE
 blacktop/kafka      latest              461MB
+blacktop/kafka      3.1                 461MB
 blacktop/kafka      3.0                 461MB
 blacktop/kafka      2.8                 473MB
 blacktop/kafka      2.7                 473MB
@@ -85,5 +86,5 @@ Heavily (if not entirely) influenced by <https://github.com/wurstmeister/kafka-d
 
 ## License
 
-MIT Copyright (c) 2016-2021 **blacktop**
+MIT Copyright (c) 2016-2022 **blacktop**
 

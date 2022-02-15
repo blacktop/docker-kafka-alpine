@@ -65,15 +65,15 @@ jobs:
         id: docker_build_3
         uses: docker/build-push-action@v2
         with:
-          context: ./3.0
+          context: ./3.1
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             blacktop/kafka:latest
             blacktop/kafka:3
-            blacktop/kafka:3.0
-            blacktop/kafka:3.0.0
+            blacktop/kafka:3.1
+            blacktop/kafka:3.1.0
             ghcr.io/blacktop/kafka:latest
             ghcr.io/blacktop/kafka:3
-            ghcr.io/blacktop/kafka:3.0
-            ghcr.io/blacktop/kafka:3.0.0
+            ghcr.io/blacktop/kafka:3.1
+            ghcr.io/blacktop/kafka:3.1.0
           labels: ${{ steps.meta.outputs.labels }}
