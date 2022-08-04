@@ -23,7 +23,8 @@ tags:
 
 .PHONY: deps
 deps:
-	go get github.com/Shopify/sarama/tools/...
+	go install github.com/Shopify/sarama/tools/kafka-console-consumer@latest
+	go install github.com/Shopify/sarama/tools/kafka-console-producer@latest
 
 test: stop deps ## Test docker image
 	docker rm -f kafka || true
@@ -35,8 +36,9 @@ test: stop deps ## Test docker image
 				 -e KAFKA_CREATE_TOPICS="test-topic:1:1" $(ORG)/$(NAME):$(BUILD)
 	sleep 10; kafka-console-consumer --brokers=localhost:9092 --topic=test-topic | tee -a /tmp/kafka.out &
 	echo "shrinky-dinks" | kafka-console-producer --brokers=localhost:9092 --topic=test-topic
-	grep -q "shrinky-dinks" /tmp/kafka.out
-	rm /tmp/kafka.out
+	echo "dinky-shrinks" | kafka-console-producer --brokers=localhost:9092 --topic=test-topic
+	grep -q "shrinky-dinks" /tmp/kafka.out; echo $?
+	rm /tmp/kafka.out || true
 
 tar: ## Export tar of docker image
 	docker save $(ORG)/$(NAME):$(BUILD) -o $(NAME).tar

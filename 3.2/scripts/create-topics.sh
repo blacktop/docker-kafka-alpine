@@ -34,6 +34,6 @@ if [[ -n $KAFKA_CREATE_TOPICS ]]; then
     IFS=','; for topicToCreate in $KAFKA_CREATE_TOPICS; do
         echo "creating topics: $topicToCreate"
         IFS=':' read -a topicConfig <<< "$topicToCreate"
-        JMX_PORT='' kafka-topics.sh --create --bootstrap-server $KAFKA_ZOOKEEPER_CONNECT --replication-factor ${topicConfig[2]} --partitions ${topicConfig[1]} --topic "${topicConfig[0]}"
+        JMX_PORT='' kafka-topics.sh --bootstrap-server $KAFKA_ZOOKEEPER_CONNECT --create --replication-factor ${topicConfig[2]} --partitions ${topicConfig[1]} --topic "${topicConfig[0]}"
     done
 fi
