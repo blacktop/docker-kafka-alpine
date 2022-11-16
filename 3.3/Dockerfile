@@ -2,12 +2,12 @@ FROM alpine:3.16
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV KAFKA_VERSION 3.2.3
+ENV KAFKA_VERSION 3.3.1
 ENV SCALA_VERSION 2.13
 
 LABEL name="kafka" version=${KAFKA_VERSION}
 
-RUN apk add --no-cache openjdk8-jre bash docker coreutils su-exec
+RUN apk add --no-cache openjdk17-jre bash docker coreutils su-exec
 RUN apk add --no-cache -t .build-deps curl ca-certificates jq \
   && mkdir -p /opt \
   && mirror=$(curl --stderr /dev/null https://www.apache.org/dyn/closer.cgi\?as_json\=1 | jq -r '.preferred') \
