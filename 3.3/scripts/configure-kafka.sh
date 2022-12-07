@@ -2,8 +2,8 @@
 
 # set -eo pipefail
 
-${KAFKA_BROKER_ID:=-1}
-${KAFKA_PORT:=9092}
+: ${KAFKA_BROKER_ID:=-1}
+KAFKA_PORT="${KAFKA_PORT:-9092}"
 
 if [[ -z "$KAFKA_LOG_DIRS" ]]; then
     export KAFKA_LOG_DIRS="/kafka/kafka-logs/$HOSTNAME"
